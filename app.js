@@ -1,22 +1,25 @@
+// git push -u origin master
 import "core-js";
 import express from "express";
 import morgan from "morgan";
 import helmet from "helmet";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
-import { userRouter } from "./router"; // not default
+import userRouter from "./routers/userRouter";
+import videoRouter from "./routers/videoRouter";
+import globalRouter from "./routers/globalRouter";
 // require take node module form somewhere
 // first require search express folder where index.js are
 // if express is't here then search node)modules
 const app = express();
 
-const handleHome = (req, res) => res.send("Hello from my ass");
+// const handleHome = (req, res) => res.send("Hello from my ass");
 
 // function handleProfile(req, res) {
 //   res.send("You are on my profile");
 // }
 // it's same upper handleProfile function
-const handleProfile = (req, res) => res.send("You are on my Profile");
+// const handleProfile = (req, res) => res.send("You are on my Profile");
 
 // const betweenHome = (req, res, next) => {
 //   console.log("Between");
@@ -31,12 +34,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(helmet());
 app.use(morgan("dev"));
 
-app.get("/", handleHome); //route
-// betweenHome is middleware that between home(/) and handleHome
-
+app.use("/", globalRouter);
 app.use("/user", userRouter);
-
-app.get("/profile", handleProfile);
+app.use("/video", videoRouter);
 
 export default app;
 // somebody import app.js, app.js give app object
