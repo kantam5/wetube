@@ -5,17 +5,19 @@ const LOGIN = "/login";
 const LOGOUT = "/logout";
 const SEARCH = "/search";
 
-// users
+// Users
+
 const USERS = "/users";
-const USER_DETAIL = "/:id"; ///users/1
+const USER_DETAIL = "/:id";
 const EDIT_PROFILE = "/edit-profile";
-const CHANGE_PASSWARD = "/change-passward";
+const CHANGE_PASSWORD = "/change-password";
 
 // Videos
+
 const VIDEOS = "/videos";
 const UPLOAD = "/upload";
 const VIDEO_DETAIL = "/:id";
-const EDIT_VIDEO = "/:id/edit"; ///video/1/edit
+const EDIT_VIDEO = "/:id/edit";
 const DELETE_VIDEO = "/:id/delete";
 
 const routes = {
@@ -27,7 +29,7 @@ const routes = {
   users: USERS,
   userDetail: USER_DETAIL,
   editProfile: EDIT_PROFILE,
-  changePassward: CHANGE_PASSWARD,
+  changePassword: CHANGE_PASSWORD,
   videos: VIDEOS,
   upload: UPLOAD,
   videoDetail: VIDEO_DETAIL,
