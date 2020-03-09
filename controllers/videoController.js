@@ -41,7 +41,7 @@ export const videoDetail = async (req, res) => {
   } = req;
   try {
     const video = await Video.findById(id);
-    res.render("videoDetail", { pageTitle: "Video Detail", video });
+    res.render("videoDetail", { pageTitle: video.title, video });
   } catch (error) {
     res.redirect(routes.home);
   }
@@ -66,7 +66,7 @@ export const postEditVideo = async (req, res) => {
     body: { title, description }
   } = req;
   try {
-    await Video.findOneAndUpdate({ id }, { title, description });
+    await Video.findOneAndUpdate({ _id: id }, { title, description });
     res.redirect(routes.videoDetail(id));
   } catch (error) {
     res.redirect(routes.home);
@@ -74,7 +74,14 @@ export const postEditVideo = async (req, res) => {
 };
 // you need to give the same name to Schema's model and partials's name to look code better
 
-export const deleteVideo = (req, res) =>
-  res.render("deleteVideo", { pageTitle: "Delete Video" });
+export const deleteVideo = async (req, res) => {
+  const {
+    params: { id }
+  } = req;
+  try {
+    await Video.findOneAndRemove({ _id: id });
+  } catch (error) {}
+  res.redirect(routes.home);
+};
 
 // first argument of render is template and second is object that add information to template
