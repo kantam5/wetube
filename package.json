@@ -25,7 +25,8 @@
     "save": "^2.4.0"
   },
   "scripts": {
-    "start": "nodemon --exec babel-node init.js --delay 2"
+    "dev:server": "nodemon --exec babel-node init.js --delay 2",
+    "dev:assets": "webpack"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"
