@@ -7,9 +7,19 @@ const ENTRY_FILE = path.resolve(__dirname, "assets", "js", "main.js");
 const OUTPUT_DIR = path.join(__dirname, "static");
 
 const config = {
-  entry: ENTRY_FILE,
+  entry: ["@babel/polyfill", ENTRY_FILE],
   mode: MODE,
   module: {
+    rules: [
+      {
+        test: /\.(js)$/,
+        use: [
+          {
+            loader: "babel-loader"
+          }
+        ]
+      }
+    ],
     // when ever you find a module follow rules
     rules: [
       {
@@ -21,7 +31,7 @@ const config = {
           {
             loader: "postcss-loader", // make run a secpfic plugin for css
             options: {
-              plugin() {
+              plugins() {
                 return [autoprefiexer({ browsers: "cover 99.5%" })];
               }
             }
